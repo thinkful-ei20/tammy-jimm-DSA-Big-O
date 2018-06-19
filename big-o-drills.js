@@ -90,3 +90,55 @@ function generateFib(num) {
 // It creates an array with a length equal to 'num'
 // The greater num is the number of array elements it has to compute increases linearly
 
+function efficientSearch(array, item) {
+  let minIndex = 0;
+  let maxIndex = array.length - 1;
+  let currentIndex;
+  let currentElement;
+
+  while (minIndex <= maxIndex) {
+    currentIndex = Math.floor((minIndex + maxIndex) / 2);
+    currentElement = array[currentIndex];
+
+    if (currentElement < item) {
+      minIndex = currentIndex + 1;
+    }
+    else if (currentElement > item) {
+      maxIndex = currentIndex - 1;
+    }
+    else {
+      return currentIndex;
+    }
+  }
+  return -1;
+}
+
+//On(logn)
+//It halves the array and checks to see if the item is smaller or greater than the midpoint
+//If it is smaller it'll re-use the lower halved array and compare the midpoint to the item again
+//If it is larger it'll re-use the upper halved array and compare the midpoint to the item again
+//It will repeat the halving process until the current element matches the item or the min >=max
+
+function findRandomElement(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+//O(1) constant
+//Generates a random index and returns element at index
+
+
+function isPrime(n) {
+  // if n is less than 2 or a decimal, it's not prime
+  if (n < 2 || n % 1 !== 0) {
+    return false;
+  }
+  // otherwise, check if `n` is divisible by any integer
+  // between 2 and n.
+  for (let i = 2; i < n; ++i) {
+    if (n % i === 0) return false;
+  }
+  return true;
+}
+
+//O(n) linear
+//Worst case, it will divide the number 'n-1' amount of times to check for prime
